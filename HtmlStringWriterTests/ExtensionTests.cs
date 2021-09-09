@@ -20,7 +20,7 @@ namespace HtmlDocument.UnitTests
 
             Assert.That(result, Is.EqualTo(expectedResult));
         }
-
+        
         [Test]
         public void AddValues_WhenCalled_ReturnsStringWithNoSpaceAtTheEnd()
         {
@@ -98,6 +98,38 @@ namespace HtmlDocument.UnitTests
 
             cell = cell.AddElement(new Cell());
             Assert.That(cell.Count, Is.EqualTo(2));
+        }
+        
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        public void ToHtmlClass_WhenCalled_ThrowException(string value)
+        {
+            Assert.That(value.ToHtmlClass, Throws.ArgumentException);
+        }
+
+        [Test]
+        public void ToHtmlClass_WhenCalled_ChangesToHtmlClass()
+        {
+            var result = "value".ToHtmlClass();
+            Assert.That(result, Is.EqualTo(".value"));
+        }
+        
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        public void ToHtmlId_WhenCalled_ThrowException(string value)
+        {
+            Assert.That(value.ToHtmlId, Throws.ArgumentException);
+        }
+
+        [Test]
+        public void ToHtmlId_WhenCalled_ChangesToHtmlClass()
+        {
+            var result = "value".ToHtmlId();
+            Assert.That(result, Is.EqualTo("#value"));
         }
     }
 }

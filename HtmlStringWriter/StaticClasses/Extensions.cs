@@ -40,5 +40,19 @@ namespace HtmlStringWriter.StaticClasses
 
             foreach (var child in htmlElements) child.ToHtmlString(sb);
         }
+
+        public static string ToHtmlClass(this string value)
+        {
+            if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException(value);
+            
+            return $".{value}";
+        }
+        
+        public static string ToHtmlId(this string value)
+        {
+            if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException(value);
+            
+            return $"#{value}";
+        }
     }
 }

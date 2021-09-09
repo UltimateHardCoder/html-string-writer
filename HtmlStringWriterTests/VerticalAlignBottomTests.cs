@@ -18,9 +18,10 @@ namespace HtmlDocument.UnitTests
         [Test]
         public void ToHtmlString_WhenCalled_ReturnsString()
         {
-            Assert.That(() => _verticalAlignBottom.ToHtmlString(), Throws.Exception);
+            var result = _verticalAlignBottom.ToHtmlString();
+            AssertVerticalAlignBottom(result);
         }
-
+        
         [Test]
         public void ToHtmlString_WhenCalled_FillsStringBuilders()
         {
@@ -28,6 +29,11 @@ namespace HtmlDocument.UnitTests
             _verticalAlignBottom.ToHtmlString(sb);
 
             var result = sb.ToString();
+            AssertVerticalAlignBottom(result);
+        }
+
+        private static void AssertVerticalAlignBottom(string result)
+        {
             Assert.That(result, Does.StartWith("vertical-align: "));
             Assert.That(result, Does.EndWith($"{Constants.Bottom};"));
         }

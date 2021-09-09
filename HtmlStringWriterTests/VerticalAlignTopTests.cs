@@ -18,7 +18,8 @@ namespace HtmlDocument.UnitTests
         [Test]
         public void ToHtmlString_WhenCalled_ReturnsString()
         {
-            Assert.That(() => _verticalAlignTop.ToHtmlString(), Throws.Exception);
+            var result = _verticalAlignTop.ToHtmlString();
+            AssertVerticalAlignTop(result);
         }
 
         [Test]
@@ -28,6 +29,11 @@ namespace HtmlDocument.UnitTests
             _verticalAlignTop.ToHtmlString(sb);
 
             var result = sb.ToString();
+            AssertVerticalAlignTop(result);
+        }
+
+        private static void AssertVerticalAlignTop(string result)
+        {
             Assert.That(result, Does.StartWith("vertical-align: "));
             Assert.That(result, Does.EndWith($"{Constants.Top};"));
         }

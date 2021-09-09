@@ -18,9 +18,10 @@ namespace HtmlDocument.UnitTests
         [Test]
         public void ToHtmlString_WhenCalled_ReturnsString()
         {
-            Assert.That(() => _textAlignRight.ToHtmlString(), Throws.Exception);
+            var result = _textAlignRight.ToHtmlString();
+            AssertTextAlignRight(result);
         }
-
+        
         [Test]
         public void ToHtmlString_WhenCalled_FillsStringBuilders()
         {
@@ -28,6 +29,11 @@ namespace HtmlDocument.UnitTests
             _textAlignRight.ToHtmlString(sb);
 
             var result = sb.ToString();
+            AssertTextAlignRight(result);
+        }
+
+        private static void AssertTextAlignRight(string result)
+        {
             Assert.That(result, Does.StartWith("text-align: "));
             Assert.That(result, Does.EndWith($"{Constants.Right};"));
         }

@@ -4,24 +4,19 @@ namespace HtmlStringWriter.Attributes.Style.Border
     using Colors;
     using Interfaces;
 
-    public class BorderRgba : Border, IStyleAttribute
+    public class BorderColor : Border, IStyleAttribute
     {
-        private readonly Rgba _rgba;
+        private readonly Color _color;
 
-        public BorderRgba(int r, int g, int b, double a)
+        public BorderColor(Color color)
         {
-            _rgba = new Rgba(r, g, b, a);
-        }
-
-        public BorderRgba(Rgba rgba)
-        {
-            _rgba = rgba;
+            _color = color;
         }
         
         public void ToHtmlString(StringBuilder sb)
         {
             sb.Append(Name);
-            _rgba.ToHtmlString(sb);
+            _color.ToHtmlString(sb);
             sb.Append(';');
         }
 

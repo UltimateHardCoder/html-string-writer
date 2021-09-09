@@ -14,7 +14,7 @@ namespace HtmlStringWriter.Attributes.Style.TextAlign
 
         public string ToHtmlString()
         {
-            throw new NotImplementedException();
+            return Render(ToHtmlString);
         }
     }
 }

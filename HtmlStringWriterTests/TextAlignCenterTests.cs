@@ -18,7 +18,8 @@ namespace HtmlDocument.UnitTests
         [Test]
         public void ToHtmlString_WhenCalled_ReturnsString()
         {
-            Assert.That(() => _textAlignCenter.ToHtmlString(), Throws.Exception);
+            var result = _textAlignCenter.ToHtmlString();
+            AssertTextAlignCenter(result);
         }
 
         [Test]
@@ -28,6 +29,11 @@ namespace HtmlDocument.UnitTests
             _textAlignCenter.ToHtmlString(sb);
 
             var result = sb.ToString();
+            AssertTextAlignCenter(result);
+        }
+
+        private static void AssertTextAlignCenter(string result)
+        {
             Assert.That(result, Does.StartWith("text-align: "));
             Assert.That(result, Does.EndWith($"{Constants.Center};"));
         }
