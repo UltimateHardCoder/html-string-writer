@@ -1,29 +1,33 @@
 namespace HtmlStringWriter.Attributes.Style.Border
 {
-    using System;
     using System.Text;
+    using Colors;
     using Interfaces;
 
     public class BorderRgb : Border, IStyleAttribute
     {
-        private readonly int _r;
-        private readonly int _b;
-        private readonly int _g;
+        private readonly Rgb _rgb;
 
-        public BorderRgb(int r, int b, int g)
+        public BorderRgb(int r, int g, int b)
         {
-            _r = r;
-            _b = b;
-            _g = g;
+            _rgb = new Rgb(r, g, b);
         }
+
+        public BorderRgb(Rgb rgb)
+        {
+            _rgb = rgb;
+        }
+        
         public void ToHtmlString(StringBuilder sb)
         {
-            sb.Append($"{Name}rgb({_r}, {_g}, {_b});");
+            sb.Append(Name);
+            _rgb.ToHtmlString(sb);
+            sb.Append(';');
         }
 
         public string ToHtmlString()
         {
-            throw new NotImplementedException();
+            return Render(ToHtmlString);
         }
     }
 }

@@ -1,6 +1,5 @@
 namespace HtmlStringWriter.Attributes.Style.VerticalAlign
 {
-    using System;
     using System.Text;
     using Interfaces;
     using StaticClasses;
@@ -14,7 +13,7 @@ namespace HtmlStringWriter.Attributes.Style.VerticalAlign
 
         public string ToHtmlString()
         {
-            throw new NotImplementedException();
+            return Render(ToHtmlString);
         }
     }
 }

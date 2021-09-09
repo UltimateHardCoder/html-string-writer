@@ -18,9 +18,10 @@ namespace HtmlDocument.UnitTests
         [Test]
         public void ToHtmlString_WhenCalled_ReturnsString()
         {
-            Assert.That(() => _verticalAlignCenter.ToHtmlString(), Throws.Exception);
+            var result = _verticalAlignCenter.ToHtmlString();
+            AssertVerticalAlignCenter(result);
         }
-
+        
         [Test]
         public void ToHtmlString_WhenCalled_FillsStringBuilders()
         {
@@ -28,6 +29,11 @@ namespace HtmlDocument.UnitTests
             _verticalAlignCenter.ToHtmlString(sb);
 
             var result = sb.ToString();
+            AssertVerticalAlignCenter(result);
+        }
+
+        private static void AssertVerticalAlignCenter(string result)
+        {
             Assert.That(result, Does.StartWith("vertical-align: "));
             Assert.That(result, Does.EndWith($"{Constants.Center};"));
         }
